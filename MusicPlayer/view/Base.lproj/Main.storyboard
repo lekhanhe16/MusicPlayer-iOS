@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TMC-a7-jqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TMC-a7-jqX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,14 +18,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C69-Tq-k7W" customClass="LZViewPager" customModule="LZViewPager">
-                                <rect key="frame" x="0.0" y="88" width="414" height="702"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="706"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G4a-Jv-rxL" userLabel="playview">
-                                <rect key="frame" x="0.0" y="790" width="414" height="72"/>
+                                <rect key="frame" x="0.0" y="798" width="414" height="64"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="72" id="XtP-wa-HP4"/>
+                                    <constraint firstAttribute="height" constant="64" id="XtP-wa-HP4"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -42,8 +43,15 @@
                     </view>
                     <navigationItem key="navigationItem" title="LạcTrôi" id="eCD-2m-GjA">
                         <rightBarButtonItems>
-                            <barButtonItem title="Item" image="shuffle" catalog="system" id="Ra1-L6-kcf"/>
-                            <barButtonItem systemItem="search" id="NS0-dH-eFf"/>
+                            <barButtonItem title="Shuffle" image="shuffle" catalog="system" id="Ra1-L6-kcf">
+                                <color key="tintColor" systemColor="systemOrangeColor"/>
+                                <connections>
+                                    <action selector="btnShuffleClicked:" destination="BYZ-38-t0r" id="4x2-hX-4xn"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Search" image="magnifyingglass" catalog="system" id="NS0-dH-eFf">
+                                <color key="tintColor" systemColor="systemOrangeColor"/>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -121,7 +129,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TMC-a7-jqX" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="iHp-16-1Ba">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" systemColor="systemOrangeColor"/>
@@ -138,6 +146,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="shuffle" catalog="system" width="128" height="95"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

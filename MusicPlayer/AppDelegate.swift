@@ -6,14 +6,28 @@
 //
 
 import UIKit
-
+import AVFoundation
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.interruptSpokenAudioAndMixWithOthers])
+            print("Playback OK")
+            try AVAudioSession.sharedInstance().setActive(true)
+            print("Session is Active")
+            
+//            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default,options: [.mixWithOthers, .allowAirPlay])
+//            
+//            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print(error)
+        }
+        return true
+    }
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
         return true
     }
 

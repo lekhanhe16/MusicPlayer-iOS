@@ -6,24 +6,22 @@
 //
 
 import UIKit
+import MediaPlayer
 
 class ArtistViewController: UIViewController {
-
+    var viewModel: AllSongViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let artists = MPMediaQuery.artists().collections
+        if let artists = artists {
+            for artist in artists {
+                let item = artist.representativeItem
+                let artistName = item?.artist
+                print(artistName!)
+            }
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -17,18 +17,37 @@ class SongCellItem: UITableViewCell {
         // Initialization code
     }
     
-    weak var delegate: SongCellDelegate?
+    weak var delegate: SongCellDelegate!
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+//        print(delegate)
         // Configure the view for the selected state
+        
+        if selected == true {
+//            delegate.didPlayASong(song: Song(title: "", artist: "", url: URL(fileURLWithPath: ""), artwork: UIImage()))
+        }
     }
     
-    func rowItemClicked() {
-        if delegate == nil {
-            print("nil")
-        }
-        delegate?.didPlayASong()
+    func playSong(song: Song){
+        self.delegate.didPlayASong(song: song)
     }
+}
+
+extension SongCellItem: SongReusableCellConfig {
+    static var reusableCellName: String {
+        return K.ReuseableCell.songCellIdentifier
+    }
+    
+    func bindData(item: Song) {
+            song.text = item.title
+            songArtist.text = item.artist
+            songImg.image = item.artwork
+        
+    }
+    
+    static var nibName: String {
+        return "SongCellItem"
+    }
+    
 }
