@@ -7,4 +7,6 @@ target 'MusicPlayer' do
 
   # Pods for MusicPlayer
   pod 'LZViewPager', '~> 1.2.5'
+  pod 'Swinject'
+pod 'SwinjectStoryboard'
 end

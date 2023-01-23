@@ -7,7 +7,7 @@
 
 import UIKit
 import LZViewPager
-
+import MediaPlayer
 class ViewController: UIViewController {
     var fragments: [UIViewController] = []
     var currentIndex: Int = 0
@@ -15,17 +15,33 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var playView: UIView!
     @IBOutlet weak var viewPager: LZViewPager!
-    
+    var playViewHeightConstraint: NSLayoutConstraint?
     // MARK: IBActions
-    
+    var viewmodel: AllSongViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        UserDefaults.standard.set(false, forKey: K.UserDefaultKey.IS_SHUFFLE_ON)
         navigationItem.titleView?.tintColor = .orange
+        
         setUpViewPager()
-        playView.isHidden = true
+        setupPlayerControlView()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.didPlaybackCompleted),
+                         name: NSNotification.Name(rawValue: "NextSong"), object: nil)
         // Do any additional setup after loading the view.
     }
-
+        
+    @objc func didPlaybackCompleted() {
+        print("vc audio finish")
+        let song = viewmodel.getSongs()![viewmodel.getCurSong()]
+        updatePlayerView(song: song)
+    }
+    func setupPlayerControlView(){
+        playView.isHidden = true
+        playViewHeightConstraint = playView.heightAnchor.constraint(equalToConstant: 0)
+        playViewHeightConstraint?.isActive = true
+        playView.layer.cornerRadius = playView.bounds.height / 3
+    }
     func setUpViewPager() {
         print("self \(self)")
         let allsongs = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "AllSongs")
@@ -40,6 +56,27 @@ class ViewController: UIViewController {
         viewPager.hostController = self
         fragments = [allsongs, playlist, artist]
         viewPager.reload()
+    }
+    
+    @IBAction func btnShuffleClicked(_ sender: UIBarButtonItem) {
+        switch sender.title {
+            case K.BarItemTitle.SHUFFLE:
+                UserDefaults.standard.set(!UserDefaults.standard.bool(forKey: K.UserDefaultKey.IS_SHUFFLE_ON), forKey: K.UserDefaultKey.IS_SHUFFLE_ON)
+                if UserDefaults.standard.bool(forKey: K.UserDefaultKey.IS_SHUFFLE_ON) {
+                    viewmodel.shuffle()
+                    viewmodel.play(at: Int.random(in: 0..<viewmodel.numberOfSongs()))
+                    updatePlayerView(song: viewmodel.getSongs()![viewmodel.getCurSong()])
+                    showToast(message: "Shuffle: ON", font: .systemFont(ofSize: 17))
+                }
+                else {
+                    showToast(message: "Shuffle: OFF", font: .systemFont(ofSize: 17))
+                }
+            default:
+                return
+        }
+    }
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "NextSong"), object: nil)
     }
 }
 
@@ -63,6 +100,27 @@ extension ViewController: LZViewPagerDataSource{
     func colorForIndicator(at index: Int) -> UIColor {
         return .black
     }
+    
+    func updatePlayerView(song: Song) {
+        playViewHeightConstraint?.isActive = false
+        playView.isHidden = false
+        for view in playView.subviews {
+            view.removeFromSuperview()
+        }
+        let customerPlayerView = CustomPlayerView(song: song)
+        customerPlayerView.translatesAutoresizingMaskIntoConstraints = false
+        customerPlayerView.isLayoutMarginsRelativeArrangement = true
+        customerPlayerView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20)
+        playView.addSubview(customerPlayerView)
+        
+        playView.addConstraints([
+            customerPlayerView.topAnchor.constraint(equalTo: playView.topAnchor),
+            customerPlayerView.leadingAnchor.constraint(equalTo: playView.leadingAnchor),
+            customerPlayerView.trailingAnchor.constraint(equalTo: playView.trailingAnchor),
+            customerPlayerView.bottomAnchor.constraint(equalTo: playView.bottomAnchor)
+//            customerPlayerView.centerYAnchor.constraint(equalTo: playView.centerYAnchor)
+        ])
+    }
 }
 
 extension ViewController: LZViewPagerDelegate {
@@ -76,9 +134,8 @@ extension ViewController: LZViewPagerDelegate {
     }
 }
 
-//extension ViewController: SongCellDelegate {
-//    func didPlayASong() {
-//        print("Heslo hosney")
-//        playView.isHidden = false
-//    }
-//}
+extension ViewController: SongCellDelegate {
+    func didPlayASong(song: Song) {
+        updatePlayerView(song: song)
+    }
+}
