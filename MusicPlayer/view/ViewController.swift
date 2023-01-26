@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var playView: UIView!
     @IBOutlet weak var viewPager: LZViewPager!
+    
     var playViewHeightConstraint: NSLayoutConstraint?
     // MARK: IBActions
     var viewmodel: AllSongViewModel!
@@ -41,6 +42,7 @@ class ViewController: UIViewController {
         playViewHeightConstraint = playView.heightAnchor.constraint(equalToConstant: 0)
         playViewHeightConstraint?.isActive = true
         playView.layer.cornerRadius = playView.bounds.height / 3
+        
     }
     func setUpViewPager() {
         print("self \(self)")
@@ -102,6 +104,7 @@ extension ViewController: LZViewPagerDataSource{
     }
     
     func updatePlayerView(song: Song) {
+        
         playViewHeightConstraint?.isActive = false
         playView.isHidden = false
         for view in playView.subviews {
@@ -120,6 +123,27 @@ extension ViewController: LZViewPagerDataSource{
             customerPlayerView.bottomAnchor.constraint(equalTo: playView.bottomAnchor)
 //            customerPlayerView.centerYAnchor.constraint(equalTo: playView.centerYAnchor)
         ])
+        print("sub view \(playView.subviews[0])")
+        ((playView.subviews[0] as? CustomPlayerView)!.controlBtns as? ControlButtonsView)!.backBtn.addTarget(self, action: #selector(self.btnPlayPrevClicked), for: .touchUpInside)
+        ((playView.subviews[0] as? CustomPlayerView)!.controlBtns as? ControlButtonsView)!.playpauseBtn.addTarget(self, action: #selector(self.btnPlayPauseClicked), for: .touchUpInside)
+        ((playView.subviews[0] as? CustomPlayerView)!.controlBtns as? ControlButtonsView)!.nextBtn.addTarget(self, action: #selector(self.btnPlayNextClicked), for: .touchUpInside)
+    }
+    @objc func btnPlayPrevClicked() {
+        viewmodel.playPrev()
+    }
+    
+    @objc func btnPlayPauseClicked() {
+        if viewmodel.checkIsPlaying() {
+            ((playView.subviews[0] as? CustomPlayerView)!.controlBtns as? ControlButtonsView)!.playpauseBtn.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+        }
+        else {
+            ((playView.subviews[0] as? CustomPlayerView)!.controlBtns as? ControlButtonsView)!.playpauseBtn.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        }
+        viewmodel.playOrPause()
+    }
+    
+    @objc func btnPlayNextClicked() {
+        viewmodel.playNext()
     }
 }
 

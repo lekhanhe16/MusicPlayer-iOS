@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class CustomPlayerView: UIStackView{
+    var controlBtns: UIStackView!
     init(song: Song) {
         super.init(frame: .zero)
         axis = .horizontal
@@ -20,7 +21,7 @@ class CustomPlayerView: UIStackView{
         let songInfo = SongInfoStackView(title: song.title, artist: song.artist)
         songInfo.translatesAutoresizingMaskIntoConstraints = false
         
-        let controlBtns = ControlButtonsView()
+        controlBtns = ControlButtonsView()
         controlBtns.translatesAutoresizingMaskIntoConstraints = false
         
         addArrangedSubview(songImg)

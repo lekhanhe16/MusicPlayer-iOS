@@ -30,7 +30,6 @@
 		6B7C5BCE2974710100A803FA /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7C5BCD2974710100A803FA /* Song.swift */; };
 		6B8EEA0E297D1D26001D20A9 /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8EEA0D297D1D26001D20A9 /* ViewUtils.swift */; };
 		6B9A348829785A620083ABC0 /* MediaPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9A348729785A620083ABC0 /* MediaPlayerService.swift */; };
-		6B9A348B29786A140083ABC0 /* MediaPlayerServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9A348A29786A140083ABC0 /* MediaPlayerServiceDelegate.swift */; };
 		6BAE5260297953FF002A7578 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAE525F297953FF002A7578 /* Constants.swift */; };
 		6BAE526229795546002A7578 /* SongReuseableCellUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAE526129795546002A7578 /* SongReuseableCellUtil.swift */; };
 /* End PBXBuildFile section */
@@ -62,7 +61,6 @@
 		6B7C5BCD2974710100A803FA /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		6B8EEA0D297D1D26001D20A9 /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		6B9A348729785A620083ABC0 /* MediaPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerService.swift; sourceTree = "<group>"; };
-		6B9A348A29786A140083ABC0 /* MediaPlayerServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerServiceDelegate.swift; sourceTree = "<group>"; };
 		6BAE525F297953FF002A7578 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6BAE526129795546002A7578 /* SongReuseableCellUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongReuseableCellUtil.swift; sourceTree = "<group>"; };
 		7720B44E80204C4AAC9F55D6 /* Pods-MusicPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicPlayer.debug.xcconfig"; path = "Target Support Files/Pods-MusicPlayer/Pods-MusicPlayer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 			isa = PBXGroup;
 			children = (
 				6B545DF4296342C200F57D82 /* AllSongCellDelegate.swift */,
-				6B9A348A29786A140083ABC0 /* MediaPlayerServiceDelegate.swift */,
 			);
 			path = delegates;
 			sourceTree = "<group>";
@@ -371,7 +368,6 @@
 				6B4542792976DECE005184E8 /* SwinjectStoryboard+Extension.swift in Sources */,
 				6B545DEA2963397A00F57D82 /* ArtistViewController.swift in Sources */,
 				6B45428229770FC2005184E8 /* ControlButtonsView.swift in Sources */,
-				6B9A348B29786A140083ABC0 /* MediaPlayerServiceDelegate.swift in Sources */,
 				6B545DF5296342C200F57D82 /* AllSongCellDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

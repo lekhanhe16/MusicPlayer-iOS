@@ -7,12 +7,9 @@
 
 import Foundation
 import AVFoundation
-//import NotificationCenter
 
 class MediaPlayerService: NSObject {
     var avPlayer: AVAudioPlayer?
-    var curPlaybackTime: Double?
-    var delegate: MediaPlayerServiceDelegate!
     override init() {
         super.init()
     }
@@ -27,16 +24,21 @@ class MediaPlayerService: NSObject {
         }
         
     }
-    func isPlaying() {
-        if avPlayer!.isPlaying {
-            curPlaybackTime = avPlayer!.currentTime
-            avPlayer!.pause()
-        }
-        else if let time = curPlaybackTime {
-            avPlayer!.play(atTime: time)
-        }
+    
+    func isPlaying() -> Bool{
+        return avPlayer!.isPlaying
     }
     
+    func playOrPause() {
+        print(avPlayer!.isPlaying)
+        if avPlayer!.isPlaying {
+            avPlayer!.pause()
+        }
+        else  {
+            avPlayer!.prepareToPlay()
+            avPlayer!.play()
+        }
+    }
 }
 
 extension MediaPlayerService: AVAudioPlayerDelegate {
