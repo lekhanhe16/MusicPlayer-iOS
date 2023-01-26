@@ -75,8 +75,13 @@ class AllSongViewModel {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NextSong"),object:nil)
         }
     }
+    
+    func checkIsPlaying() -> Bool {
+        return mediaService.isPlaying()
+    }
+    
     func playOrPause(){
-        
+        mediaService.playOrPause()
     }
     func playPrev() {
         

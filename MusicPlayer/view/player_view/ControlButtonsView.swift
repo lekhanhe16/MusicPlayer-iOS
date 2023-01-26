@@ -9,13 +9,17 @@ import Foundation
 import UIKit
 
 class ControlButtonsView: UIStackView {
+    var backBtn: UIButton!
+    var playpauseBtn: UIButton!
+    var nextBtn: UIButton!
+    
     init() {
         super.init(frame: .zero)
-        let backBtn = ViewFactory.createButton(name: "backward.fill")
+        backBtn = ViewFactory.createButton(name: "backward.fill")
         backBtn.translatesAutoresizingMaskIntoConstraints = false
-        let playpauseBtn = ViewFactory.createButton(name: "play.fill")
+        playpauseBtn = ViewFactory.createButton(name: "play.fill")
         playpauseBtn.translatesAutoresizingMaskIntoConstraints = false
-        let nextBtn = ViewFactory.createButton(name: "forward.fill")
+        nextBtn = ViewFactory.createButton(name: "forward.fill")
         nextBtn.translatesAutoresizingMaskIntoConstraints = false
         axis = .horizontal
         distribution = .fillEqually
