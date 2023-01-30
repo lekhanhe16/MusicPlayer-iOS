@@ -9,16 +9,22 @@ import UIKit
 import LZViewPager
 import MediaPlayer
 class ViewController: UIViewController {
-    var fragments: [UIViewController] = []
-    var currentIndex: Int = 0
+    private var fragments: [UIViewController] = []
+    private var currentIndex: Int = 0
     // MARK: IBOutlets
     
-    @IBOutlet weak var playView: UIView!
+    @IBOutlet weak var playView: UIControl!
+    
     @IBOutlet weak var viewPager: LZViewPager!
     
-    var playViewHeightConstraint: NSLayoutConstraint?
+    private var playViewHeightConstraint: NSLayoutConstraint?
     // MARK: IBActions
-    var viewmodel: AllSongViewModel!
+    private var viewmodel: AllSongViewModel!
+    
+    func setViewModel(vm: AllSongViewModel) {
+        self.viewmodel = vm
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         UserDefaults.standard.set(false, forKey: K.UserDefaultKey.IS_SHUFFLE_ON)
@@ -30,22 +36,38 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.didPlaybackCompleted),
                          name: NSNotification.Name(rawValue: "NextSong"), object: nil)
         // Do any additional setup after loading the view.
-    }
         
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch (segue.identifier) {
+        case "openmainplayer":
+            let vc = segue.destination as! MainPlayerViewController
+            vc.text = viewmodel.getSongs()![viewmodel.getCurSong()].title
+        default:
+            print("default")
+        }
+    }
+    @objc func playViewTouched() {
+        print("touch")
+        performSegue(withIdentifier: "openmainplayer", sender: self)
+    }
     @objc func didPlaybackCompleted() {
         print("vc audio finish")
         let song = viewmodel.getSongs()![viewmodel.getCurSong()]
         updatePlayerView(song: song)
+        
+        if !viewmodel.checkIsPlaying() {
+            ((playView.subviews[0] as? CustomPlayerView)!.controlBtns as? ControlButtonsView)!.playpauseBtn.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+        }
     }
     func setupPlayerControlView(){
-        playView.isHidden = true
         playViewHeightConstraint = playView.heightAnchor.constraint(equalToConstant: 0)
         playViewHeightConstraint?.isActive = true
         playView.layer.cornerRadius = playView.bounds.height / 3
         
+        playView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(playViewTouched)))
     }
     func setUpViewPager() {
-        print("self \(self)")
         let allsongs = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "AllSongs")
         let playlist = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Albums")
         let artist = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Artist")
@@ -68,10 +90,10 @@ class ViewController: UIViewController {
                     viewmodel.shuffle()
                     viewmodel.play(at: Int.random(in: 0..<viewmodel.numberOfSongs()))
                     updatePlayerView(song: viewmodel.getSongs()![viewmodel.getCurSong()])
-                    showToast(message: "Shuffle: ON", font: .systemFont(ofSize: 17))
+                    showToast(message: "Shuffle: ON", font: .systemFont(ofSize: 17), duration: 2.0)
                 }
                 else {
-                    showToast(message: "Shuffle: OFF", font: .systemFont(ofSize: 17))
+                    showToast(message: "Shuffle: OFF", font: .systemFont(ofSize: 17), duration: 2.0)
                 }
             default:
                 return
@@ -106,7 +128,6 @@ extension ViewController: LZViewPagerDataSource{
     func updatePlayerView(song: Song) {
         
         playViewHeightConstraint?.isActive = false
-        playView.isHidden = false
         for view in playView.subviews {
             view.removeFromSuperview()
         }
@@ -123,13 +144,14 @@ extension ViewController: LZViewPagerDataSource{
             customerPlayerView.bottomAnchor.constraint(equalTo: playView.bottomAnchor)
 //            customerPlayerView.centerYAnchor.constraint(equalTo: playView.centerYAnchor)
         ])
-        print("sub view \(playView.subviews[0])")
+        
         ((playView.subviews[0] as? CustomPlayerView)!.controlBtns as? ControlButtonsView)!.backBtn.addTarget(self, action: #selector(self.btnPlayPrevClicked), for: .touchUpInside)
         ((playView.subviews[0] as? CustomPlayerView)!.controlBtns as? ControlButtonsView)!.playpauseBtn.addTarget(self, action: #selector(self.btnPlayPauseClicked), for: .touchUpInside)
         ((playView.subviews[0] as? CustomPlayerView)!.controlBtns as? ControlButtonsView)!.nextBtn.addTarget(self, action: #selector(self.btnPlayNextClicked), for: .touchUpInside)
     }
     @objc func btnPlayPrevClicked() {
-        viewmodel.playPrev()
+        viewmodel.resetAudio()
+        viewmodel.playPrev(touch: true)
     }
     
     @objc func btnPlayPauseClicked() {
@@ -143,7 +165,8 @@ extension ViewController: LZViewPagerDataSource{
     }
     
     @objc func btnPlayNextClicked() {
-        viewmodel.playNext()
+        viewmodel.resetAudio()
+        viewmodel.playNext(touch: true)
     }
 }
 
@@ -159,7 +182,12 @@ extension ViewController: LZViewPagerDelegate {
 }
 
 extension ViewController: SongCellDelegate {
-    func didPlayASong(song: Song) {
+    func didLongPressASong(song: String) {
+        showToast(message: song, font: .systemFont(ofSize: 17), duration: 5.0)
+    }
+    
+    func didClickASong(song: Song) {
         updatePlayerView(song: song)
+        viewmodel.resetAudio()
     }
 }

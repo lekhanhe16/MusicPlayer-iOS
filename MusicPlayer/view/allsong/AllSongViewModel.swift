@@ -9,10 +9,11 @@ import Foundation
 import MediaPlayer
 
 class AllSongViewModel {
-    var arrSongs: [Song]? = nil
-    var mediaService: MediaPlayerService!
-    var curSong: Int
-    lazy var shuffleList: [Song]? = nil
+    private var arrSongs: [Song]? = nil
+    private var mediaService: MediaPlayerService!
+    private var curSong: Int
+    private var reachLastSong: Bool = false
+    private lazy var shuffleList: [Song]? = nil
     
     func isShuffleOn() -> Bool {
         return UserDefaults.standard.bool(forKey: K.UserDefaultKey.IS_SHUFFLE_ON)
@@ -21,8 +22,8 @@ class AllSongViewModel {
         return UserDefaults.standard.bool(forKey: K.UserDefaultKey.IS_REPEAT_ON)
     }
     
-    init() {
-        print(UserDefaults.standard.bool(forKey: K.UserDefaultKey.IS_SHUFFLE_ON))
+    init(mediaService: MediaPlayerService) {
+        self.mediaService = mediaService
         let mediaItems = MPMediaQuery.songs().items
         curSong = -1
         if let items = mediaItems {
@@ -43,7 +44,6 @@ class AllSongViewModel {
         return arrSongs?.count ?? 0
     }
     func getCurSong() -> Int {
-        print("audio \(curSong)")
         return curSong
     }
     func getSongs() -> [Song]?{
@@ -54,26 +54,37 @@ class AllSongViewModel {
     }
     
     func play(at index: Int = -1) {
-        print("index \(curSong)")
         if index != -1 {
             curSong = index
         }
         
         if curSong != -1 {
+            
             let songUrl = isShuffleOn() ? shuffleList![curSong].url : arrSongs![curSong].url
-            mediaService.play(withURL: songUrl)
+            mediaService.prepare(withURL: songUrl)
+            mediaService.play()
         }
     }
-    func playNext() {
-        if isRepeatOn() {
-            curSong = (curSong + 1 < arrSongs!.count - 1) ? curSong + 1 : 0
+    func playNext(touch: Bool = false) {
+        if !(touch && reachLastSong) {
+            reachLastSong = false
         }
-        else {
-            curSong = (curSong + 1 < arrSongs!.count - 1) ? curSong + 1 : -1
+        
+        curSong = (curSong + 1 <= arrSongs!.count - 1) ? curSong + 1 : 0
+        if curSong == 0 && !touch{
+            reachLastSong = true
         }
-        if curSong != -1 {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NextSong"),object:nil)
+        
+        let songUrl = isShuffleOn() ? shuffleList![curSong].url : arrSongs![curSong].url
+        mediaService.prepare(withURL: songUrl)
+        if isRepeatOn() || (!isRepeatOn() && !reachLastSong ){
+            play()
         }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NextSong"),object:nil)
+    }
+    
+    func resetAudio() {
+        mediaService.resetAudioPlayer()
     }
     
     func checkIsPlaying() -> Bool {
@@ -83,8 +94,15 @@ class AllSongViewModel {
     func playOrPause(){
         mediaService.playOrPause()
     }
-    func playPrev() {
+    func playPrev(touch: Bool = false) {
+        curSong = (curSong - 1 >= 0) ? curSong - 1 : arrSongs!.count - 1
         
+        let songUrl = isShuffleOn() ? shuffleList![curSong].url : arrSongs![curSong].url
+        mediaService.prepare(withURL: songUrl)
+        if !reachLastSong{
+            play()
+        }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NextSong"),object:nil)
     }
     func shuffle() {
         if UserDefaults.standard.bool(forKey: K.UserDefaultKey.IS_SHUFFLE_ON) {
@@ -109,7 +127,7 @@ class AllSongViewModel {
     @objc func didPlaybackCompleted() {
         print("vm audio finish \(curSong)")
         playNext()
-        play()
+        
     }
     
     deinit {

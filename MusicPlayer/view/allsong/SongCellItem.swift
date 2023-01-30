@@ -30,7 +30,7 @@ class SongCellItem: UITableViewCell {
     }
     
     func playSong(song: Song){
-        self.delegate.didPlayASong(song: song)
+        self.delegate.didClickASong(song: song)
     }
 }
 
@@ -43,7 +43,6 @@ extension SongCellItem: SongReusableCellConfig {
             song.text = item.title
             songArtist.text = item.artist
             songImg.image = item.artwork
-        
     }
     
     static var nibName: String {

@@ -9,34 +9,44 @@ import Foundation
 import AVFoundation
 
 class MediaPlayerService: NSObject {
-    var avPlayer: AVAudioPlayer?
+    private var avPlayer: AVAudioPlayer?
     override init() {
         super.init()
     }
-    func play(withURL songUrl: URL) {
-        do {
-            avPlayer = try AVAudioPlayer(contentsOf: songUrl)
-            avPlayer!.delegate = self
-            avPlayer!.play()
+    func prepare(withURL songUrl: URL) {
+        if avPlayer == nil {
+            do {
+                avPlayer = try AVAudioPlayer(contentsOf: songUrl)
+                avPlayer!.delegate = self
+            }
+            catch {
+                print(error)
+            }
         }
-        catch {
-            print(error)
-        }
-        
+    }
+    
+    func resetAudioPlayer() {
+        avPlayer = nil
+    }
+    func play() {
+        avPlayer?.play()
     }
     
     func isPlaying() -> Bool{
-        return avPlayer!.isPlaying
+        return avPlayer?.isPlaying ?? false
     }
     
     func playOrPause() {
-        print(avPlayer!.isPlaying)
-        if avPlayer!.isPlaying {
-            avPlayer!.pause()
+        guard let avPlayer = avPlayer else {
+            play()
+            return
+        }
+        if avPlayer.isPlaying {
+            avPlayer.pause()
         }
         else  {
-            avPlayer!.prepareToPlay()
-            avPlayer!.play()
+            avPlayer.prepareToPlay()
+            avPlayer.play()
         }
     }
 }
