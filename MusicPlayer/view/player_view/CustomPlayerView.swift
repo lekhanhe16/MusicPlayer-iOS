@@ -10,6 +10,7 @@ import UIKit
 
 class CustomPlayerView: UIStackView{
     var controlBtns: UIStackView!
+    var songInfo: SongInfoStackView!
     init(song: Song) {
         super.init(frame: .zero)
         axis = .horizontal
@@ -18,7 +19,7 @@ class CustomPlayerView: UIStackView{
         let songImg = ViewFactory.createImageView(image: song.artwork)
         songImg.translatesAutoresizingMaskIntoConstraints = false
         
-        let songInfo = SongInfoStackView(title: song.title, artist: song.artist)
+        songInfo = SongInfoStackView(title: song.title, artist: song.artist)
         songInfo.translatesAutoresizingMaskIntoConstraints = false
         
         controlBtns = ControlButtonsView()
@@ -39,7 +40,7 @@ class CustomPlayerView: UIStackView{
             songImg.trailingAnchor.constraint(equalTo: songInfo.leadingAnchor, constant: -8),
             songInfo.centerYAnchor.constraint(equalTo: centerYAnchor),
             songInfo.trailingAnchor.constraint(equalTo: controlBtns.leadingAnchor, constant: -8),
-            
+
             controlBtns.centerYAnchor.constraint(equalTo: centerYAnchor),
             controlBtns.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])

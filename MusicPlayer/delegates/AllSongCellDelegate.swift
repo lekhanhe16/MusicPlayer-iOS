@@ -8,5 +8,6 @@
 import Foundation
 
 protocol SongCellDelegate: AnyObject {
-    func didPlayASong(song: Song)
+    func didClickASong(song: Song)
+    func didLongPressASong(song: String)
 }
