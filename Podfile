@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '15.5'
+platform :ios, '14.3'
 
 target 'MusicPlayer' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -8,5 +8,5 @@ target 'MusicPlayer' do
   # Pods for MusicPlayer
   pod 'LZViewPager', '~> 1.2.5'
   pod 'Swinject'
-pod 'SwinjectStoryboard'
+  pod 'SwinjectStoryboard'
 end

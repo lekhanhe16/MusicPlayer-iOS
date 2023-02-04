@@ -29,7 +29,8 @@ extension AllSongsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let cell = tableView.dequeueReusableCell(withIdentifier: SongCellItem.reusableCellName, for: indexPath) as! SongCellItem
-        cell.delegate = UIApplication.shared.connectedScenes.compactMap{($0 as? UIWindowScene)?.keyWindow}.first?.rootViewController?.children.first as? SongCellDelegate
+        cell.delegate = getCellDelegate()
+        
         cell.playSong(song: allsongViewModel.getSongs()![indexPath.row])
         allsongViewModel.play(at: indexPath.row)
         
@@ -37,14 +38,23 @@ extension AllSongsViewController: UITableViewDelegate {
 }
 
 extension AllSongsViewController: UITableViewDataSource {
+    func getCellDelegate() -> SongCellDelegate {
+        if #available(iOS 15.0, *){
+            return (UIApplication.shared.connectedScenes.compactMap{($0 as? UIWindowScene)?.keyWindow}.first?.rootViewController?.children.first as? SongCellDelegate)!
+        }
+        else {
+            let keyWindow = UIApplication.shared.windows.first(where: {$0.isKeyWindow}) ?? UIApplication.shared.windows.first
+            let delegate = keyWindow?.rootViewController?.children.first as? SongCellDelegate
+            return delegate!
+        }
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allsongViewModel.getSongs()?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SongCellItem.reusableCellName, for: indexPath) as! SongCellItem
-        cell.delegate = UIApplication.shared.connectedScenes.compactMap{($0 as? UIWindowScene)?.keyWindow}.first?.rootViewController?.children.first as? SongCellDelegate
-        
+        cell.delegate = getCellDelegate()
         let song = allsongViewModel.bind(indexPath: indexPath)
         cell.bindData(item: song)
         let lpgr = UILongPressGestureRecognizer(target: self
@@ -72,8 +82,8 @@ extension AllSongsViewController {
                     return ASPopUpViewController(coder: coder, songTitle: cell.song.text!)
                 })
                 self.addChild(popVC)
-                popVC.view.frame = CGRect(x: 60, y: 240, width: self.view.frame.size.width-120, height: self.view.frame.height-480)
-                popVC.view.layer.cornerRadius = 32
+                popVC.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.height)
+                popVC.view.layer.cornerRadius = 5
                 self.view.addSubview(popVC.view)
                 
                 self.view.addConstraints([

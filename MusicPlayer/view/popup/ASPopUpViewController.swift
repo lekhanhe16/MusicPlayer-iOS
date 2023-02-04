@@ -23,7 +23,7 @@ class ASPopUpViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = UIColor.darkGray.withAlphaComponent(0.8)
+        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         songTitleLabel.text = songTitle
         self.showAnimate()
     }

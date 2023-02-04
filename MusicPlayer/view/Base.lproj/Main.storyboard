@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,30 +18,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="k8J-Sa-8ny">
-                                <rect key="frame" x="125" y="387.5" width="164.5" height="121.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="k8J-Sa-8ny">
+                                <rect key="frame" x="125" y="405.5" width="164.5" height="85"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qwj-WZ-Obr">
-                                        <rect key="frame" x="61.5" y="0.0" width="41.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" systemColor="systemOrangeColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oS1-vI-J8p">
-                                        <rect key="frame" x="0.0" y="36.5" width="164.5" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="164.5" height="34.5"/>
                                         <color key="tintColor" systemColor="systemOrangeColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="ADD TO PLAYLIST">
-                                            <color key="baseForegroundColor" systemColor="labelColor"/>
-                                        </buttonConfiguration>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="ADD TO PLAYLIST"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="ADD TO PLAYLIST"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E6g-CY-Ig7">
-                                        <rect key="frame" x="0.0" y="87" width="164.5" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="50.5" width="164.5" height="34.5"/>
                                         <color key="tintColor" systemColor="systemOrangeColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="CLOSE">
-                                            <color key="baseForegroundColor" systemColor="labelColor"/>
-                                        </buttonConfiguration>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="CLOSE"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="CLOSE"/>
                                         <connections>
                                             <action selector="btnCloseClicked:" destination="yFR-sh-MzW" eventType="touchUpInside" id="CSy-ge-mue"/>
                                         </connections>
@@ -50,17 +43,25 @@
                                     <constraint firstItem="E6g-CY-Ig7" firstAttribute="leading" secondItem="k8J-Sa-8ny" secondAttribute="leading" id="5S7-Rb-GBI"/>
                                     <constraint firstAttribute="trailing" secondItem="E6g-CY-Ig7" secondAttribute="trailing" id="BB4-T5-qK5"/>
                                     <constraint firstAttribute="bottom" secondItem="E6g-CY-Ig7" secondAttribute="bottom" id="Cd0-KX-vvB"/>
-                                    <constraint firstItem="qwj-WZ-Obr" firstAttribute="centerX" secondItem="k8J-Sa-8ny" secondAttribute="centerX" id="Epe-6a-hgU"/>
                                     <constraint firstAttribute="trailing" secondItem="oS1-vI-J8p" secondAttribute="trailing" id="Haj-8d-jzN"/>
                                     <constraint firstItem="oS1-vI-J8p" firstAttribute="leading" secondItem="k8J-Sa-8ny" secondAttribute="leading" id="Whf-b0-Xdb"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qwj-WZ-Obr">
+                                <rect key="frame" x="186.5" y="64" width="41.5" height="291.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemOrangeColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Gx3-bV-bcn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="k8J-Sa-8ny" firstAttribute="centerX" secondItem="Hca-gq-71H" secondAttribute="centerX" id="0rt-2o-j25"/>
+                            <constraint firstItem="qwj-WZ-Obr" firstAttribute="centerX" secondItem="Hca-gq-71H" secondAttribute="centerX" id="U2n-bh-3s0"/>
+                            <constraint firstItem="qwj-WZ-Obr" firstAttribute="top" secondItem="Gx3-bV-bcn" secondAttribute="top" constant="16" id="e6d-GA-sMN"/>
                             <constraint firstItem="k8J-Sa-8ny" firstAttribute="centerY" secondItem="Hca-gq-71H" secondAttribute="centerY" id="kbH-JC-iit"/>
+                            <constraint firstItem="k8J-Sa-8ny" firstAttribute="top" secondItem="qwj-WZ-Obr" secondAttribute="bottom" constant="50" id="xPy-S9-OqQ"/>
                         </constraints>
                     </view>
                     <connections>
@@ -78,10 +79,32 @@
                     <view key="view" contentMode="scaleToFill" id="2zW-kX-l1w">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="838"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Wa-wx-od4">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <items>
+                                    <barButtonItem title="Item" image="xmark.circle" catalog="system" id="0Ya-U8-NRx">
+                                        <connections>
+                                            <action selector="btnCloseClicked:" destination="PKW-j5-ReG" id="AXT-6y-PJZ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="tintColor" systemColor="systemOrangeColor"/>
+                                <color key="barTintColor" name="textColor"/>
+                            </toolbar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="ztj-EH-ufc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3Wa-wx-od4" firstAttribute="top" secondItem="2zW-kX-l1w" secondAttribute="top" id="Cxc-Gu-1n8"/>
+                            <constraint firstAttribute="trailing" secondItem="3Wa-wx-od4" secondAttribute="trailing" id="Dut-Nu-591"/>
+                            <constraint firstItem="3Wa-wx-od4" firstAttribute="leading" secondItem="2zW-kX-l1w" secondAttribute="leading" id="vpI-Mp-K1Q"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="ATn-Tu-wd1"/>
+                    <navigationItem key="navigationItem" id="rQ8-xq-7xM"/>
+                    <connections>
+                        <outlet property="toolbar" destination="3Wa-wx-od4" id="jUi-gh-1aE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mba-Dm-efN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -231,9 +254,10 @@
     <resources>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="shuffle" catalog="system" width="128" height="95"/>
-        <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <image name="xmark.circle" catalog="system" width="128" height="123"/>
+        <namedColor name="textColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

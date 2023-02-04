@@ -18,11 +18,12 @@ class CustomPlayerView: UIStackView{
         alignment = .fill
         let songImg = ViewFactory.createImageView(image: song.artwork)
         songImg.translatesAutoresizingMaskIntoConstraints = false
+        songImg.setCornerRadius(with: 16)
         
         songInfo = SongInfoStackView(title: song.title, artist: song.artist)
         songInfo.translatesAutoresizingMaskIntoConstraints = false
         
-        controlBtns = ControlButtonsView()
+        controlBtns = ControlButtonsView(ofSize: 32, withSpacing: 16)
         controlBtns.translatesAutoresizingMaskIntoConstraints = false
         
         addArrangedSubview(songImg)

@@ -24,8 +24,9 @@ extension SwinjectStoryboard {
         defaultContainer.storyboardInitCompleted(AllSongsViewController.self){ resolver, controller in
             controller.setViewModel(vm: resolver.resolve(AllSongViewModel.self, name: "allsongvm")!)
         }
-        
-        
+        defaultContainer.storyboardInitCompleted(MainPlayerViewController.self, initCompleted: {resolver, controller in
+            controller.setViewModel(vm: resolver.resolve(AllSongViewModel.self, name: "allsongvm")!)
+        })
     }
 }
 
