@@ -13,11 +13,12 @@ class Song {
     let artist: String
     let url: URL
     let artwork: UIImage
-    
-    init(title: String, artist: String, url: URL, artwork: UIImage) {
+    let duration: TimeInterval
+    init(title: String, artist: String, url: URL, artwork: UIImage, duration: TimeInterval) {
         self.title = title
         self.artist = artist
         self.url = url
         self.artwork = artwork
+        self.duration = duration
     }
 }

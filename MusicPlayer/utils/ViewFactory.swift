@@ -18,7 +18,6 @@ class ViewFactory {
         img.widthAnchor.constraint(equalToConstant: 32).isActive = true
 //        img.frame.size = CGSize(width: 48, height: 48)
         // rounded image
-        img.setRounded()
         return img
     }
     static func createLabel(with text: String, size: CGFloat) -> UILabel{
@@ -35,18 +34,19 @@ class ViewFactory {
         let button = UIButton()
         let config = UIImage.SymbolConfiguration(pointSize: 24)
         let image = UIImage(systemName: name, withConfiguration: config)
-
         button.setImage(image, for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
+//        button.imageView?.translatesAutoresizingMaskIntoConstraints = false
         button.imageView?.tintColor = .black
+//        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }
 }
 
 extension UIImageView {
 
-   func setRounded() {
-       self.layer.cornerRadius = 16
+    func setCornerRadius(with radius: CGFloat) {
+       self.layer.cornerRadius = radius
        self.clipsToBounds = true
    }
 }

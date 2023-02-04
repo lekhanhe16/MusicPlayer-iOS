@@ -25,6 +25,9 @@ class MediaPlayerService: NSObject {
         }
     }
     
+    func currentSec() -> TimeInterval {
+        return avPlayer?.currentTime ?? 0
+    }
     func resetAudioPlayer() {
         avPlayer = nil
     }
@@ -54,7 +57,6 @@ class MediaPlayerService: NSObject {
 extension MediaPlayerService: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         if flag {
-            print("post notification audio finish")
             avPlayer!.stop()
             avPlayer = nil
             NotificationCenter.default

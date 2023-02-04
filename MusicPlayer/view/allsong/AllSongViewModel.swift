@@ -18,8 +18,8 @@ class AllSongViewModel {
     func isShuffleOn() -> Bool {
         return UserDefaults.standard.bool(forKey: K.UserDefaultKey.IS_SHUFFLE_ON)
     }
-    func isRepeatOn() -> Bool {
-        return UserDefaults.standard.bool(forKey: K.UserDefaultKey.IS_REPEAT_ON)
+    func getRepeatStt() -> Int {
+        return UserDefaults.standard.integer(forKey: K.UserDefaultKey.REPEAT_STATUS)
     }
     
     init(mediaService: MediaPlayerService) {
@@ -28,7 +28,7 @@ class AllSongViewModel {
         curSong = -1
         if let items = mediaItems {
             self.arrSongs = items.map({(item: MPMediaItem) -> Song in
-                return Song(title: item.title!, artist: item.artist!, url: item.assetURL!, artwork: item.artwork!.image(at: CGSize(width: 64, height: 64))!) })
+                return Song(title: item.title!, artist: item.artist!, url: item.assetURL!, artwork: item.artwork!.image(at: CGSize(width: 64, height: 64))!, duration: item.playbackDuration) })
         }
         NotificationCenter.default
                           .addObserver(self,
@@ -36,6 +36,9 @@ class AllSongViewModel {
                          name: NSNotification.Name(rawValue: "AudioFinish"), object: nil)
     }
     
+    func getCurrentPlayingSec() -> TimeInterval{
+        return mediaService.currentSec()
+    }
     func bind(indexPath: IndexPath) -> Song{
         return arrSongs![indexPath.row]
     }
@@ -69,15 +72,17 @@ class AllSongViewModel {
         if !(touch && reachLastSong) {
             reachLastSong = false
         }
+        if (getRepeatStt() != K.RepeatMode.REPEAT_ONE) {
+            curSong = (curSong + 1 <= arrSongs!.count - 1) ? curSong + 1 : 0
+        }
         
-        curSong = (curSong + 1 <= arrSongs!.count - 1) ? curSong + 1 : 0
         if curSong == 0 && !touch{
             reachLastSong = true
         }
         
         let songUrl = isShuffleOn() ? shuffleList![curSong].url : arrSongs![curSong].url
         mediaService.prepare(withURL: songUrl)
-        if isRepeatOn() || (!isRepeatOn() && !reachLastSong ){
+        if (getRepeatStt() != K.RepeatMode.REPEAT_OFF) || (getRepeatStt() == K.RepeatMode.REPEAT_OFF && !reachLastSong ){
             play()
         }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NextSong"),object:nil)
@@ -125,9 +130,7 @@ class AllSongViewModel {
     }
     
     @objc func didPlaybackCompleted() {
-        print("vm audio finish \(curSong)")
         playNext()
-        
     }
     
     deinit {

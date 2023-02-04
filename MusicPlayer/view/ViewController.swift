@@ -34,8 +34,11 @@ class ViewController: UIViewController {
         setupPlayerControlView()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.didPlaybackCompleted),
-                         name: NSNotification.Name(rawValue: "NextSong"), object: nil)
+                                               name: NSNotification.Name(rawValue: "NextSong"), object: nil)
         // Do any additional setup after loading the view.
+        
+                        let dir = "/Users/kl/Library/Developer/CoreSimulator/Devices/C05290DC-8160-415F-A91E-5AFEBB57BF33/data/Containers/Shared/AppGroup/D2B8FC51-C6CE-4608-9A62-E8B52C824179/File\\ Provider\\ Storage/Downloads"
+         
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -52,7 +55,6 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: "openmainplayer", sender: self)
     }
     @objc func didPlaybackCompleted() {
-        print("vc audio finish")
         let song = viewmodel.getSongs()![viewmodel.getCurSong()]
         updatePlayerView(song: song)
         
@@ -99,8 +101,59 @@ class ViewController: UIViewController {
                 return
         }
     }
+    
+    func updatePlayerView(song: Song) {
+        
+        playViewHeightConstraint?.isActive = false
+        for view in playView.subviews {
+            view.removeFromSuperview()
+        }
+        let customerPlayerView = CustomPlayerView(song: song)
+        customerPlayerView.translatesAutoresizingMaskIntoConstraints = false
+        customerPlayerView.isLayoutMarginsRelativeArrangement = true
+        customerPlayerView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20)
+        playView.addSubview(customerPlayerView)
+        
+        playView.addConstraints([
+            customerPlayerView.topAnchor.constraint(equalTo: playView.topAnchor),
+            customerPlayerView.leadingAnchor.constraint(equalTo: playView.leadingAnchor),
+            customerPlayerView.trailingAnchor.constraint(equalTo: playView.trailingAnchor),
+            customerPlayerView.bottomAnchor.constraint(equalTo: playView.bottomAnchor)
+        ])
+        
+        registerButtonsAction()
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "NextSong"), object: nil)
+    }
+}
+
+extension ViewController : ControlButtonsAction {
+    func registerButtonsAction() {
+        ((playView.subviews[0] as? CustomPlayerView)!.controlBtns as? ControlButtonsView)!.backBtn.addTarget(self, action: #selector(self.btnPlayPrevClicked), for: .touchUpInside)
+        ((playView.subviews[0] as? CustomPlayerView)!.controlBtns as? ControlButtonsView)!.playpauseBtn.addTarget(self, action: #selector(self.btnPlayPauseClicked), for: .touchUpInside)
+        ((playView.subviews[0] as? CustomPlayerView)!.controlBtns as? ControlButtonsView)!.nextBtn.addTarget(self, action: #selector(self.btnPlayNextClicked), for: .touchUpInside)
+    }
+    
+    @objc func btnPlayPrevClicked() {
+        viewmodel.resetAudio()
+        viewmodel.playPrev(touch: true)
+    }
+    
+    @objc func btnPlayPauseClicked() {
+        if viewmodel.checkIsPlaying() {
+            ((playView.subviews[0] as? CustomPlayerView)!.controlBtns as? ControlButtonsView)!.playpauseBtn.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+        }
+        else {
+            ((playView.subviews[0] as? CustomPlayerView)!.controlBtns as? ControlButtonsView)!.playpauseBtn.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        }
+        viewmodel.playOrPause()
+    }
+    
+    @objc func btnPlayNextClicked() {
+        viewmodel.resetAudio()
+        viewmodel.playNext(touch: true)
     }
 }
 
@@ -123,50 +176,6 @@ extension ViewController: LZViewPagerDataSource{
     
     func colorForIndicator(at index: Int) -> UIColor {
         return .black
-    }
-    
-    func updatePlayerView(song: Song) {
-        
-        playViewHeightConstraint?.isActive = false
-        for view in playView.subviews {
-            view.removeFromSuperview()
-        }
-        let customerPlayerView = CustomPlayerView(song: song)
-        customerPlayerView.translatesAutoresizingMaskIntoConstraints = false
-        customerPlayerView.isLayoutMarginsRelativeArrangement = true
-        customerPlayerView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 10, leading: 20, bottom: 10, trailing: 20)
-        playView.addSubview(customerPlayerView)
-        
-        playView.addConstraints([
-            customerPlayerView.topAnchor.constraint(equalTo: playView.topAnchor),
-            customerPlayerView.leadingAnchor.constraint(equalTo: playView.leadingAnchor),
-            customerPlayerView.trailingAnchor.constraint(equalTo: playView.trailingAnchor),
-            customerPlayerView.bottomAnchor.constraint(equalTo: playView.bottomAnchor)
-//            customerPlayerView.centerYAnchor.constraint(equalTo: playView.centerYAnchor)
-        ])
-        
-        ((playView.subviews[0] as? CustomPlayerView)!.controlBtns as? ControlButtonsView)!.backBtn.addTarget(self, action: #selector(self.btnPlayPrevClicked), for: .touchUpInside)
-        ((playView.subviews[0] as? CustomPlayerView)!.controlBtns as? ControlButtonsView)!.playpauseBtn.addTarget(self, action: #selector(self.btnPlayPauseClicked), for: .touchUpInside)
-        ((playView.subviews[0] as? CustomPlayerView)!.controlBtns as? ControlButtonsView)!.nextBtn.addTarget(self, action: #selector(self.btnPlayNextClicked), for: .touchUpInside)
-    }
-    @objc func btnPlayPrevClicked() {
-        viewmodel.resetAudio()
-        viewmodel.playPrev(touch: true)
-    }
-    
-    @objc func btnPlayPauseClicked() {
-        if viewmodel.checkIsPlaying() {
-            ((playView.subviews[0] as? CustomPlayerView)!.controlBtns as? ControlButtonsView)!.playpauseBtn.setImage(UIImage(systemName: "pause.fill"), for: .normal)
-        }
-        else {
-            ((playView.subviews[0] as? CustomPlayerView)!.controlBtns as? ControlButtonsView)!.playpauseBtn.setImage(UIImage(systemName: "play.fill"), for: .normal)
-        }
-        viewmodel.playOrPause()
-    }
-    
-    @objc func btnPlayNextClicked() {
-        viewmodel.resetAudio()
-        viewmodel.playNext(touch: true)
     }
 }
 

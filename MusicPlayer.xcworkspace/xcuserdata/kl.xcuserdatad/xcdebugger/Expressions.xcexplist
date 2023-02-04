@@ -9,6 +9,9 @@
                value = "curSong">
             </PersistentString>
             <PersistentString
+               value = "isRepeatOn()">
+            </PersistentString>
+            <PersistentString
                value = "self">
             </PersistentString>
          </PersistentStrings>

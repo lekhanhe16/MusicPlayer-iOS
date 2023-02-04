@@ -13,7 +13,7 @@ class ControlButtonsView: UIStackView {
     var playpauseBtn: UIButton!
     var nextBtn: UIButton!
     
-    init() {
+    init(ofSize size: CGFloat, withSpacing space: CGFloat) {
         super.init(frame: .zero)
         backBtn = ViewFactory.createButton(name: "backward.fill")
         backBtn.translatesAutoresizingMaskIntoConstraints = false
@@ -24,7 +24,7 @@ class ControlButtonsView: UIStackView {
         axis = .horizontal
         distribution = .fillEqually
         alignment = .fill
-        spacing = 16
+        spacing = space
         
         addArrangedSubview(backBtn)
         addArrangedSubview(playpauseBtn)
@@ -34,20 +34,20 @@ class ControlButtonsView: UIStackView {
             backBtn.topAnchor.constraint(equalTo: topAnchor),
             backBtn.bottomAnchor.constraint(equalTo: bottomAnchor),
             backBtn.leadingAnchor.constraint(equalTo: leadingAnchor),
-            backBtn.trailingAnchor.constraint(equalTo: playpauseBtn.leadingAnchor, constant: -16),
-            backBtn.widthAnchor.constraint(equalToConstant: 32),
+//            backBtn.trailingAnchor.constraint(equalTo: playpauseBtn.leadingAnchor, constant: -padding),
+            backBtn.widthAnchor.constraint(equalToConstant: size),
             backBtn.heightAnchor.constraint(equalTo: backBtn.widthAnchor),
             
             playpauseBtn.topAnchor.constraint(equalTo: topAnchor),
             playpauseBtn.bottomAnchor.constraint(equalTo: bottomAnchor),
-            playpauseBtn.trailingAnchor.constraint(equalTo: nextBtn.leadingAnchor, constant: -16),
-            playpauseBtn.widthAnchor.constraint(equalToConstant: 32),
+//            playpauseBtn.trailingAnchor.constraint(equalTo: nextBtn.leadingAnchor, constant: -padding),
+            playpauseBtn.widthAnchor.constraint(equalToConstant: size),
             playpauseBtn.heightAnchor.constraint(equalTo: playpauseBtn.widthAnchor),
             
             nextBtn.topAnchor.constraint(equalTo: topAnchor),
             nextBtn.bottomAnchor.constraint(equalTo: bottomAnchor),
             nextBtn.trailingAnchor.constraint(equalTo: trailingAnchor),
-            nextBtn.widthAnchor.constraint(equalToConstant: 32),
+            nextBtn.widthAnchor.constraint(equalToConstant: size),
             nextBtn.heightAnchor.constraint(equalTo: nextBtn.widthAnchor)
         ])
     }
