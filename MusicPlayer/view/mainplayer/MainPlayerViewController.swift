@@ -109,7 +109,7 @@ class MainPlayerViewController: UIViewController {
         self.viewModel = vm
     }
     override func viewDidAppear(_ animated: Bool) {
-//        showToast(message: text!, font: .systemFont(ofSize: 17), duration: 5.0)
+        
     }
     @IBAction func btnCloseClicked(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true)

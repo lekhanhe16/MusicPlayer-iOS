@@ -36,10 +36,6 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.didPlaybackCompleted),
                                                name: NSNotification.Name(rawValue: "NextSong"), object: nil)
         // Do any additional setup after loading the view.
-        
-                        let dir = "/Users/kl/Library/Developer/CoreSimulator/Devices/C05290DC-8160-415F-A91E-5AFEBB57BF33/data/Containers/Shared/AppGroup/D2B8FC51-C6CE-4608-9A62-E8B52C824179/File\\ Provider\\ Storage/Downloads"
-         
-        
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch (segue.identifier) {

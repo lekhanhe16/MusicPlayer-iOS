@@ -79,7 +79,7 @@ extension AllSongsViewController {
 //                cell.delegate.didLongPressASong(song: cell.song.text!)
                 
                 let popVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ASPopUpViewController", creator: { coder in
-                    return ASPopUpViewController(coder: coder, songTitle: cell.song.text!)
+                    return ASPopUpViewController(coder: coder, songTitle: cell.song.text!, artist: cell.songArtist.text!, img: cell.songImg.image!)
                 })
                 self.addChild(popVC)
                 popVC.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.height)
