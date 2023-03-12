@@ -30,7 +30,7 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="8WS-hy-xbk">
-                                        <rect key="frame" x="104" y="31.5" width="262" height="41"/>
+                                        <rect key="frame" x="104" y="34" width="262" height="36.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yIO-PE-4p4">
                                                 <rect key="frame" x="0.0" y="0.0" width="262" height="20.5"/>
@@ -38,10 +38,10 @@
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KLf-Nf-Ngb">
-                                                <rect key="frame" x="0.0" y="20.5" width="262" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KLf-Nf-Ngb">
+                                                <rect key="frame" x="0.0" y="20.5" width="262" height="16"/>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -53,11 +53,16 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NHU-eQ-4s8">
                                 <rect key="frame" x="16" y="198" width="250" height="150"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="Haa-IN-nTX"/>
                                     <constraint firstAttribute="width" constant="250" id="N3u-mb-PFa"/>
@@ -101,11 +106,60 @@
                         <outlet property="songArtist" destination="KLf-Nf-Ngb" id="6Dt-eH-KFr"/>
                         <outlet property="songImg" destination="UCf-Bp-VLs" id="9TM-pp-8Pa"/>
                         <outlet property="songTitleLabel" destination="yIO-PE-4p4" id="sVT-ng-96f"/>
+                        <segue destination="1M9-5T-1p8" kind="presentation" identifier="addtoplaylist" id="neo-ev-sMa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CWk-Fk-m2H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="956.52173913043487" y="533.70535714285711"/>
+        </scene>
+        <!--Add to a Playlist-->
+        <scene sceneID="0eZ-BT-Exg">
+            <objects>
+                <viewController title="Add to a Playlist" id="1M9-5T-1p8" customClass="AddToPlaylistViewController" customModule="MusicPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zqK-uR-3i3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="838"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lOg-ab-8SD">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                <items>
+                                    <navigationItem title="Add to Playlist" id="Zdm-xa-XKW">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="Eg2-HW-vQG">
+                                            <color key="tintColor" systemColor="systemOrangeColor"/>
+                                            <connections>
+                                                <action selector="cancelClicked:" destination="1M9-5T-1p8" id="5TJ-yt-aZw"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="zrN-Hm-3xX">
+                                <rect key="frame" x="0.0" y="56" width="414" height="733"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Tq4-q5-8XU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="lOg-ab-8SD" firstAttribute="trailing" secondItem="Tq4-q5-8XU" secondAttribute="trailing" id="1oN-lF-Yhe"/>
+                            <constraint firstItem="Tq4-q5-8XU" firstAttribute="bottom" secondItem="zrN-Hm-3xX" secondAttribute="bottom" id="CUZ-6z-h0x"/>
+                            <constraint firstItem="Tq4-q5-8XU" firstAttribute="trailing" secondItem="zrN-Hm-3xX" secondAttribute="trailing" id="KpV-QO-h0Z"/>
+                            <constraint firstItem="zrN-Hm-3xX" firstAttribute="leading" secondItem="Tq4-q5-8XU" secondAttribute="leading" id="TW5-r1-Yek"/>
+                            <constraint firstItem="lOg-ab-8SD" firstAttribute="top" secondItem="Tq4-q5-8XU" secondAttribute="top" id="XZv-rC-FUf"/>
+                            <constraint firstItem="lOg-ab-8SD" firstAttribute="leading" secondItem="Tq4-q5-8XU" secondAttribute="leading" id="cSK-iz-IOQ"/>
+                            <constraint firstItem="zrN-Hm-3xX" firstAttribute="top" secondItem="lOg-ab-8SD" secondAttribute="bottom" id="sSy-Z2-3rB"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="playlists" destination="zrN-Hm-3xX" id="8wN-vf-jkr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CYl-Hc-FoW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1938" y="762"/>
         </scene>
         <!--Main Player View Controller-->
         <scene sceneID="ZNh-yM-fEC">

@@ -56,7 +56,7 @@ extension AllSongsViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: SongCellItem.reusableCellName, for: indexPath) as! SongCellItem
         cell.delegate = getCellDelegate()
         let song = allsongViewModel.bind(indexPath: indexPath)
-        cell.bindData(item: song)
+        cell.config(item: song)
         let lpgr = UILongPressGestureRecognizer(target: self
                                                 , action: #selector(handleLongPress))
         lpgr.minimumPressDuration = 0.5

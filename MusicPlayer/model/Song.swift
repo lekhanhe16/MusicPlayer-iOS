@@ -8,7 +8,7 @@
 import Foundation
 import UIKit.UIImage
 
-class Song {
+class Song: DEntity {
     let title: String
     let artist: String
     let url: URL

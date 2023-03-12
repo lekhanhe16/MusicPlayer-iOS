@@ -7,16 +7,13 @@
 
 import UIKit
 
-class ASPopUpViewController: UIViewController {
+class ASPopUpViewController: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var songImg: UIImageView!
     @IBOutlet weak var songTitleLabel: UILabel!
     @IBOutlet weak var songArtist: UILabel!
     @IBOutlet weak var listAction: UICollectionView!
-    
-    let action = [Action(name: "Add to a Playlist", icon: "text.badge.plus"),
-                  Action(name: "Love", icon: "heart"),
-                  Action(name: "Close", icon: "xmark")]
+    let viewModel = PopupViewModel()
     var songTitle: String = ""
     var artist: String = ""
     var img: UIImage!
@@ -27,7 +24,10 @@ class ASPopUpViewController: UIViewController {
         self.artist = artist
         self.img = img
     }
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+    }
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -43,11 +43,34 @@ class ASPopUpViewController: UIViewController {
         setUpListActionView()
         createDataSource()
         reloadDataset()
+        
+//        let gesture = UITapGestureRecognizer(target: self, action: #selector(outterOutletTouched))
+//        gesture.delegate = self
+//        gesture.cancelsTouchesInView = true
+//        view.addGestureRecognizer(gesture)
+//        view.isUserInteractionEnabled = false
     }
     
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        guard let viewclss = touch.view, viewclss.isKind(of: ActionItemCell.self) else {
+            return true
+        }
+        return false
+    }
+//    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+//        print(gestureRecognizer.delegate)
+//
+//        print(gestureRecognizer.view.self)
+//        return false
+//    }
+    @objc func outterOutletTouched(){
+        print("outter touched")
+        willMove(toParent: nil)
+        view.removeFromSuperview()
+        removeFromParent()
+    }
     func createDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Int, Action>(collectionView: listAction) { collectionView,indexPath,action in
-            print("action \(action)")
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ActionItemCell.reuseIdentifier, for: indexPath) as! ActionItemCell
             cell.config(with: action)
             return cell
@@ -57,7 +80,7 @@ class ASPopUpViewController: UIViewController {
     func reloadDataset() {
         var snapshot = NSDiffableDataSourceSnapshot<Int, Action>()
         snapshot.appendSections([0])
-        snapshot.appendItems(action, toSection: 0)
+        snapshot.appendItems(viewModel.getActions(), toSection: 0)
         dataSource?.apply(snapshot)
     }
     func setUpListActionView() {
@@ -72,6 +95,7 @@ class ASPopUpViewController: UIViewController {
         }
         
         listAction.register(UINib(nibName: "ActionItemCell", bundle: nil), forCellWithReuseIdentifier: ActionItemCell.reuseIdentifier)
+        listAction.delegate = self
     }
     func showAnimate(){
         self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
@@ -84,7 +108,10 @@ class ASPopUpViewController: UIViewController {
     }
 }
 
-struct Action: Hashable {
-    let name: String
-    let icon: String
+extension ASPopUpViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ActionItemCell.reuseIdentifier, for: indexPath) as! ActionItemCell
+        performSegue(withIdentifier: viewModel.getActions()[indexPath.row].segueId, sender: self)
+        outterOutletTouched()
+    }
 }

@@ -7,8 +7,8 @@
 
 import Foundation
 
-protocol SongReusableCellConfig {
+protocol ReusableCellConfig {
     static var reusableCellName: String {get}
     static var nibName: String {get}
-    func bindData(item: Song)
+    func config(item: DEntity)
 }

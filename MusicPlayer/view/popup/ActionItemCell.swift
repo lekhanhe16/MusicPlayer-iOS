@@ -14,11 +14,9 @@ class ActionItemCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        print("hewllo")
     }
     
     func config(with action: Action) {
-        print("config \(action)")
         actionName?.text = action.name
         actionIcon?.image = UIImage(systemName: action.icon)
     }
