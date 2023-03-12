@@ -34,15 +34,16 @@ class SongCellItem: UITableViewCell {
     }
 }
 
-extension SongCellItem: SongReusableCellConfig {
+extension SongCellItem: ReusableCellConfig {
     static var reusableCellName: String {
         return K.ReuseableCell.songCellIdentifier
     }
     
-    func bindData(item: Song) {
-            song.text = item.title
-            songArtist.text = item.artist
-            songImg.image = item.artwork
+    func config(item: DEntity) {
+        guard let item = item as? Song else { return }
+        song.text = item.title
+        songArtist.text = item.artist
+        songImg.image = item.artwork
     }
     
     static var nibName: String {

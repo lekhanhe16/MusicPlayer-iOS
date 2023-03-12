@@ -30,13 +30,26 @@
 		6B7C5BCE2974710100A803FA /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7C5BCD2974710100A803FA /* Song.swift */; };
 		6B8EEA0E297D1D26001D20A9 /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8EEA0D297D1D26001D20A9 /* ViewUtils.swift */; };
 		6B9A348829785A620083ABC0 /* MediaPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9A348729785A620083ABC0 /* MediaPlayerService.swift */; };
+		6B9D54C62997B6F200DEBA97 /* ActionItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D54C42997B6F200DEBA97 /* ActionItemCell.swift */; };
+		6B9D54C72997B6F200DEBA97 /* ActionItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B9D54C52997B6F200DEBA97 /* ActionItemCell.xib */; };
 		6BA2E381298ABA9900CEC1DF /* CustomMainPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA2E380298ABA9900CEC1DF /* CustomMainPlayerView.swift */; };
 		6BA6A39B2988207800DA5364 /* MainPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BA6A39A2988207800DA5364 /* MainPlayerViewController.swift */; };
 		6BAE5260297953FF002A7578 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAE525F297953FF002A7578 /* Constants.swift */; };
-		6BAE526229795546002A7578 /* SongReuseableCellUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAE526129795546002A7578 /* SongReuseableCellUtil.swift */; };
-		6BC257E6298CA6FA00D4DFDD /* One Kiss - Calvin Harris_ Dua Lipa (mp3cut.net).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6BC257E5298CA6FA00D4DFDD /* One Kiss - Calvin Harris_ Dua Lipa (mp3cut.net).mp3 */; };
+		6BAE526229795546002A7578 /* ReuseableCellUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAE526129795546002A7578 /* ReuseableCellUtil.swift */; };
 		6BC2D9CF2984FE440053C425 /* ASPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC2D9CE2984FE440053C425 /* ASPopUpViewController.swift */; };
 		6BC70927298C1DF200C8A653 /* ControlButtonsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC70926298C1DF200C8A653 /* ControlButtonsAction.swift */; };
+		6BD2476829988A5E00695C3E /* PopupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD2476729988A5E00695C3E /* PopupViewModel.swift */; };
+		6BD2476B29988B7100695C3E /* AddToPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD2476A29988B7100695C3E /* AddToPlaylistViewController.swift */; };
+		6BD2476D2998924500695C3E /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD2476C2998924500695C3E /* Action.swift */; };
+		6BD2476F299893BE00695C3E /* PlaylistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD2476E299893BE00695C3E /* PlaylistViewModel.swift */; };
+		6BD2477229989AA800695C3E /* AddtoPlaylistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD2477029989AA700695C3E /* AddtoPlaylistCell.swift */; };
+		6BD2477329989AA800695C3E /* AddtoPlaylistCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BD2477129989AA700695C3E /* AddtoPlaylistCell.xib */; };
+		6BD2477529989CC600695C3E /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD2477429989CC600695C3E /* Playlist.swift */; };
+		6BD2477729989D4000695C3E /* DEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD2477629989D4000695C3E /* DEntity.swift */; };
+		6BD2477A2999155200695C3E /* DAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD247792999155200695C3E /* DAO.swift */; };
+		6BD2477E299919A500695C3E /* PlayListDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD2477D299919A500695C3E /* PlayListDAO.swift */; };
+		6BD24780299919AF00695C3E /* SongDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD2477F299919AF00695C3E /* SongDAO.swift */; };
+		6BF40FB4298EBAAB00CABD3D /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6BF40FB2298EBAAB00CABD3D /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,14 +79,27 @@
 		6B7C5BCD2974710100A803FA /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		6B8EEA0D297D1D26001D20A9 /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		6B9A348729785A620083ABC0 /* MediaPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerService.swift; sourceTree = "<group>"; };
+		6B9D54C42997B6F200DEBA97 /* ActionItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionItemCell.swift; sourceTree = "<group>"; };
+		6B9D54C52997B6F200DEBA97 /* ActionItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionItemCell.xib; sourceTree = "<group>"; };
 		6BA2E380298ABA9900CEC1DF /* CustomMainPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMainPlayerView.swift; sourceTree = "<group>"; };
 		6BA2E382298AD25300CEC1DF /* FLEX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FLEX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BA6A39A2988207800DA5364 /* MainPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPlayerViewController.swift; sourceTree = "<group>"; };
 		6BAE525F297953FF002A7578 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		6BAE526129795546002A7578 /* SongReuseableCellUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongReuseableCellUtil.swift; sourceTree = "<group>"; };
-		6BC257E5298CA6FA00D4DFDD /* One Kiss - Calvin Harris_ Dua Lipa (mp3cut.net).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "One Kiss - Calvin Harris_ Dua Lipa (mp3cut.net).mp3"; sourceTree = "<group>"; };
+		6BAE526129795546002A7578 /* ReuseableCellUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseableCellUtil.swift; sourceTree = "<group>"; };
 		6BC2D9CE2984FE440053C425 /* ASPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ASPopUpViewController.swift; sourceTree = "<group>"; };
 		6BC70926298C1DF200C8A653 /* ControlButtonsAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButtonsAction.swift; sourceTree = "<group>"; };
+		6BD2476729988A5E00695C3E /* PopupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewModel.swift; sourceTree = "<group>"; };
+		6BD2476A29988B7100695C3E /* AddToPlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToPlaylistViewController.swift; sourceTree = "<group>"; };
+		6BD2476C2998924500695C3E /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		6BD2476E299893BE00695C3E /* PlaylistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewModel.swift; sourceTree = "<group>"; };
+		6BD2477029989AA700695C3E /* AddtoPlaylistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtoPlaylistCell.swift; sourceTree = "<group>"; };
+		6BD2477129989AA700695C3E /* AddtoPlaylistCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddtoPlaylistCell.xib; sourceTree = "<group>"; };
+		6BD2477429989CC600695C3E /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
+		6BD2477629989D4000695C3E /* DEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DEntity.swift; sourceTree = "<group>"; };
+		6BD247792999155200695C3E /* DAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAO.swift; sourceTree = "<group>"; };
+		6BD2477D299919A500695C3E /* PlayListDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayListDAO.swift; sourceTree = "<group>"; };
+		6BD2477F299919AF00695C3E /* SongDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDAO.swift; sourceTree = "<group>"; };
+		6BF40FB3298EBAAB00CABD3D /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		7720B44E80204C4AAC9F55D6 /* Pods-MusicPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicPlayer.debug.xcconfig"; path = "Target Support Files/Pods-MusicPlayer/Pods-MusicPlayer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +139,8 @@
 			isa = PBXGroup;
 			children = (
 				6B7C5BCD2974710100A803FA /* Song.swift */,
+				6BD2477429989CC600695C3E /* Playlist.swift */,
+				6BD2477629989D4000695C3E /* DEntity.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -120,13 +148,14 @@
 		6B545DE329632F8600F57D82 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				6BD2476929988B0400695C3E /* addtoplaylist */,
 				6BC2D9CD2984FDFF0053C425 /* popup */,
 				6B45427C2976F13E005184E8 /* custom */,
 				6B6F562A2961EB74002B1038 /* ViewController.swift */,
 				6B6F562C2961EB74002B1038 /* Main.storyboard */,
 				6B545DE82963326F00F57D82 /* mainplayer */,
 				6B545DE729632FC700F57D82 /* artist */,
-				6B545DE629632FBF00F57D82 /* album */,
+				6B545DE629632FBF00F57D82 /* playlist */,
 				6B545DE529632FB000F57D82 /* allsong */,
 			);
 			path = view;
@@ -143,12 +172,13 @@
 			path = allsong;
 			sourceTree = "<group>";
 		};
-		6B545DE629632FBF00F57D82 /* album */ = {
+		6B545DE629632FBF00F57D82 /* playlist */ = {
 			isa = PBXGroup;
 			children = (
 				6B545DEB2963399100F57D82 /* PlaylistViewController.swift */,
+				6BD2476E299893BE00695C3E /* PlaylistViewModel.swift */,
 			);
-			path = album;
+			path = playlist;
 			sourceTree = "<group>";
 		};
 		6B545DE729632FC700F57D82 /* artist */ = {
@@ -205,10 +235,10 @@
 		6B6F56252961EB74002B1038 /* MusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				6BF40FB1298EBA8100CABD3D /* coredata */,
 				6BAE525E297953F2002A7578 /* utils */,
 				6B9A3489297860360083ABC0 /* service */,
 				6B545DF629634B9D00F57D82 /* extension */,
-				6BC257E5298CA6FA00D4DFDD /* One Kiss - Calvin Harris_ Dua Lipa (mp3cut.net).mp3 */,
 				6B545DF3296342A900F57D82 /* delegates */,
 				6B545DE329632F8600F57D82 /* view */,
 				6B545DE229632F7900F57D82 /* model */,
@@ -234,9 +264,10 @@
 			children = (
 				6B45427D2976F168005184E8 /* ViewFactory.swift */,
 				6BAE525F297953FF002A7578 /* Constants.swift */,
-				6BAE526129795546002A7578 /* SongReuseableCellUtil.swift */,
+				6BAE526129795546002A7578 /* ReuseableCellUtil.swift */,
 				6B8EEA0D297D1D26001D20A9 /* ViewUtils.swift */,
 				6BC70926298C1DF200C8A653 /* ControlButtonsAction.swift */,
+				6BD2476C2998924500695C3E /* Action.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -245,8 +276,56 @@
 			isa = PBXGroup;
 			children = (
 				6BC2D9CE2984FE440053C425 /* ASPopUpViewController.swift */,
+				6B9D54C42997B6F200DEBA97 /* ActionItemCell.swift */,
+				6B9D54C52997B6F200DEBA97 /* ActionItemCell.xib */,
+				6BD2476729988A5E00695C3E /* PopupViewModel.swift */,
 			);
 			path = popup;
+			sourceTree = "<group>";
+		};
+		6BD2476929988B0400695C3E /* addtoplaylist */ = {
+			isa = PBXGroup;
+			children = (
+				6BD2476A29988B7100695C3E /* AddToPlaylistViewController.swift */,
+				6BD2477029989AA700695C3E /* AddtoPlaylistCell.swift */,
+				6BD2477129989AA700695C3E /* AddtoPlaylistCell.xib */,
+			);
+			path = addtoplaylist;
+			sourceTree = "<group>";
+		};
+		6BD247782999154400695C3E /* dao */ = {
+			isa = PBXGroup;
+			children = (
+				6BD2477C2999199400695C3E /* playlist */,
+				6BD2477B2999198800695C3E /* song */,
+				6BD247792999155200695C3E /* DAO.swift */,
+			);
+			path = dao;
+			sourceTree = "<group>";
+		};
+		6BD2477B2999198800695C3E /* song */ = {
+			isa = PBXGroup;
+			children = (
+				6BD2477F299919AF00695C3E /* SongDAO.swift */,
+			);
+			path = song;
+			sourceTree = "<group>";
+		};
+		6BD2477C2999199400695C3E /* playlist */ = {
+			isa = PBXGroup;
+			children = (
+				6BD2477D299919A500695C3E /* PlayListDAO.swift */,
+			);
+			path = playlist;
+			sourceTree = "<group>";
+		};
+		6BF40FB1298EBA8100CABD3D /* coredata */ = {
+			isa = PBXGroup;
+			children = (
+				6BD247782999154400695C3E /* dao */,
+				6BF40FB2298EBAAB00CABD3D /* DataModel.xcdatamodeld */,
+			);
+			path = coredata;
 			sourceTree = "<group>";
 		};
 		E6E0CD55334B95FC04237DE1 /* Frameworks */ = {
@@ -318,9 +397,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BC257E6298CA6FA00D4DFDD /* One Kiss - Calvin Harris_ Dua Lipa (mp3cut.net).mp3 in Resources */,
+				6BD2477329989AA800695C3E /* AddtoPlaylistCell.xib in Resources */,
 				6B6F56332961EB75002B1038 /* LaunchScreen.storyboard in Resources */,
 				6B6F56302961EB75002B1038 /* Assets.xcassets in Resources */,
+				6B9D54C72997B6F200DEBA97 /* ActionItemCell.xib in Resources */,
 				6B6F562E2961EB74002B1038 /* Main.storyboard in Resources */,
 				6B545DF229633B9900F57D82 /* SongCellItem.xib in Resources */,
 			);
@@ -376,9 +456,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B45427B2976EEAE005184E8 /* CustomPlayerView.swift in Sources */,
+				6BD2476829988A5E00695C3E /* PopupViewModel.swift in Sources */,
+				6BD2477229989AA800695C3E /* AddtoPlaylistCell.swift in Sources */,
+				6BD2477E299919A500695C3E /* PlayListDAO.swift in Sources */,
 				6BAE5260297953FF002A7578 /* Constants.swift in Sources */,
 				6BA6A39B2988207800DA5364 /* MainPlayerViewController.swift in Sources */,
 				6B45428029770ABF005184E8 /* SongInfoStackView.swift in Sources */,
+				6BD2477A2999155200695C3E /* DAO.swift in Sources */,
 				6B6F562B2961EB74002B1038 /* ViewController.swift in Sources */,
 				6B7C5BCC29746E6D00A803FA /* AllSongViewModel.swift in Sources */,
 				6B545DF129633B9900F57D82 /* SongCellItem.swift in Sources */,
@@ -386,19 +470,27 @@
 				6B45427E2976F168005184E8 /* ViewFactory.swift in Sources */,
 				6B6F56272961EB74002B1038 /* AppDelegate.swift in Sources */,
 				6B7C5BCE2974710100A803FA /* Song.swift in Sources */,
+				6BD2476F299893BE00695C3E /* PlaylistViewModel.swift in Sources */,
 				6BC70927298C1DF200C8A653 /* ControlButtonsAction.swift in Sources */,
-				6BAE526229795546002A7578 /* SongReuseableCellUtil.swift in Sources */,
+				6BD2476D2998924500695C3E /* Action.swift in Sources */,
+				6BAE526229795546002A7578 /* ReuseableCellUtil.swift in Sources */,
 				6BA2E381298ABA9900CEC1DF /* CustomMainPlayerView.swift in Sources */,
+				6B9D54C62997B6F200DEBA97 /* ActionItemCell.swift in Sources */,
 				6B545DEE296339A200F57D82 /* AllSongsViewController.swift in Sources */,
 				6B6F56292961EB74002B1038 /* SceneDelegate.swift in Sources */,
 				6B9A348829785A620083ABC0 /* MediaPlayerService.swift in Sources */,
 				6BC2D9CF2984FE440053C425 /* ASPopUpViewController.swift in Sources */,
 				6B8EEA0E297D1D26001D20A9 /* ViewUtils.swift in Sources */,
+				6BD2477729989D4000695C3E /* DEntity.swift in Sources */,
 				6B545DF829634BB300F57D82 /* UIApplicationExtension.swift in Sources */,
 				6B4542792976DECE005184E8 /* SwinjectStoryboard+Extension.swift in Sources */,
+				6BD2476B29988B7100695C3E /* AddToPlaylistViewController.swift in Sources */,
+				6BD2477529989CC600695C3E /* Playlist.swift in Sources */,
+				6BF40FB4298EBAAB00CABD3D /* DataModel.xcdatamodeld in Sources */,
 				6B545DEA2963397A00F57D82 /* ArtistViewController.swift in Sources */,
 				6B45428229770FC2005184E8 /* ControlButtonsView.swift in Sources */,
 				6B545DF5296342C200F57D82 /* AllSongCellDelegate.swift in Sources */,
+				6BD24780299919AF00695C3E /* SongDAO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,6 +714,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6BF40FB2298EBAAB00CABD3D /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6BF40FB3298EBAAB00CABD3D /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 6BF40FB3298EBAAB00CABD3D /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6B6F561B2961EB74002B1038 /* Project object */;
 }
